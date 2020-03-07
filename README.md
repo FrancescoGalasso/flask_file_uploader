@@ -15,3 +15,9 @@ $ source venv/bin/activate
 ```
 (venv)$ python app.py
 ```
+
+### Step 2 - interact with the upload page
+
+```
+http://127.0.0.1:5000/
+```
