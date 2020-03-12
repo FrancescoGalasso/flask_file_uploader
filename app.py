@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from flask_sqlalchemy import SQLAlchemy
+from io import BytesIO
 
 import os
 import os.path
@@ -31,6 +32,12 @@ def upload():
 	db.session.commit()
 
 	return 'Saved ' + file.filename + ' into DB!'
+
+@app.route('/download')
+def download():
+
+	file_data = ItemFile.query.filter_by(id=1).first()
+	return send_file(BytesIO(file_data.data), attachment_filename='test.txt', as_attachment=True)
 
 def init_db():
 	db.create_all()
